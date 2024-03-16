@@ -24,8 +24,11 @@ And a sample output is:
 ...
 
 ## Stateless Transformations
-* MastodonWindows: Again, after studying a lot of different options, we have found a code really similar to the previous one, in fact it's the exact same for the mini batchs, and the corresponding operations with the Windows, which we initialize with 60 seconds (in order to get the last 3 batchs) but all the operations are in the same structure as with the batchs, with the only difference that now we do it to a stream.window. Now we do print the 15 top languages. The command is:
+* MastodonWindows: Again, after studying a lot of different options, we have found a code really similar to the previous one, in fact it's the exact same for the mini batchs, and the corresponding operations with the Windows, which we initialize with 60 seconds (in order to get the last 3 batchs) but all the operations are in the same structure as with the batchs, with the only difference that now we do it to a stream.window. Now we do print the 15 top languages.
+The command is:
+```
 spark-submit --class edu.upf.MastodonWindow target/lab3-mastodon-1.0-SNAPSHOT.jar ./src/main/resources/map.tsv --conf spark.driver.extraJavaOptions=-Dlog4j.configuration=file:src/main/resources/log4j.properties
+```
 
 And a sample output is:
 
@@ -95,7 +98,9 @@ And a sample output is:
 
 ## Spark Stateful transformations with Windows
 * MastodonWithState: Here we do the exact same as before but a bit trickier to be able to use both the language and the user name. We use the final stream with a string (language name from buildmap) and two tuples, one with the language code and a tuple with the user name and the integer initialized to 1. We do this cause we cannot directly delete an attributed originated from a join and we want to cosnerve the count and the user name. It could be tricky, but it is not more complex or heavier than any other possible implementation, ant the output is exactly the expected, since then we select only the desired attributes (user name and count) and do the exact same operations as before, the reducebykey, the swaps and the sortbykey. Also, before we filtered deleting pairs with no username, since we considered it'd make no sense to consider a tuple contaning all the no-username tweets. The prompt is the following:
+```
 spark-submit --class edu.upf.MastodonWithState target/lab3-mastodon-1.0-SNAPSHOT.jar ./src/main/resources/map.tsv en --conf spark.driver.extraJavaOptions=-Dlog4j.configuration=file:src/main/resources/log4j.properties
+```
 
 or any other language instead of en, and a sample output is:
 1st batch;

@@ -1,6 +1,6 @@
 # Apache Spark for real-time Mastodon tweets with DynamoDB
 
-Due to size limit reasons, the dataset is not uploaded here. Contact to me if interested in running the program.
+Due to size limit reasons, the dataset is not uploaded here. Contact to me if interested in running the program. 
 
 ## Mastodon Streaming
 * LanguageMaputils: This class tackles the processing of a tab-separated values (TSV) file containing language mappings. It performs a series of filtering operations to ensure data quality. First, it discards the header line. Then, it removes lines with less than two columns, assuming the first column always exists. These lines likely lack the desired language code or its English name. Finally, it filters out lines where the crucial ISO 639-1 code (two-digit language identifier) is empty. After this cleaning process, the remaining valid lines are transformed into a Pair RDD format, presumably for further use within the application.
